@@ -11,9 +11,17 @@ namespace ZrhAppSvcConsoleWeb.Controllers
     [Route("")]
     public class HealthCheckController : ControllerBase
     {
+        private readonly ILogger<HealthCheckController> _logger;
+
+        public HealthCheckController(ILogger<HealthCheckController> logger)
+        {
+            _logger = logger;
+
+        }
         [HttpGet]
         public IActionResult Get()
         {
+            _logger.LogInformation("health check Ok!");
             return Ok("Healthy!");
         }
     }
